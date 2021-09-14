@@ -59,12 +59,12 @@ public class StudentService {
     }
 
     @Transactional
-    public String save(StudentDTO studentDTO) {
+    public Student save(StudentDTO studentDTO) {
         if(this.validateStudentAge(studentDTO)){
             Student student = new Student();
             studentMapper.updateStudentFromDto(studentDTO,student);
             studentRepository.save(student);
-            return "Student with id: " + student.getId() + " saved";
+            return student;
         }else {
             throw new StudentAgeNotValidException(ErrorMessageConstants.STUDENT_AGE_NOT_VALID);
         }

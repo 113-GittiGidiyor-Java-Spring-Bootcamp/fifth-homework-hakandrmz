@@ -8,5 +8,5 @@ public interface ErrorMessageConstants {
     public static final String INSTRUCTOR_IS_NOT_EXIST = "Instructor is not exist";
     public static final String COURSE_IS_NOT_EXIST = "Course is not exist";
     public static final String STUDENT_IS_NOT_EXIST = "Student is not exist";
-
+    public static final String INSTRUCTOR_LOG_IS_NOT_EXIST = "Instructor log is not exit";
 }

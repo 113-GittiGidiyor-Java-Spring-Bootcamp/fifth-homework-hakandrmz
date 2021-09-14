@@ -1,5 +1,3 @@
-## Dördüncü hafta ödevi son teslim tarihi : 06.08.2021(Gelecek hafta pazartesi) - Saat =>  23:30
-
 ![homework](https://user-images.githubusercontent.com/45206582/131386439-6727321a-5a50-4c20-9413-ea4013013434.PNG)
 
 # Installation and usage
@@ -37,32 +35,41 @@ password: password
 - /exception  - specific exceptions
 - /mappers    - dto to entity mapper
 - /repository - for CrudRepository
-- /service    - service layer between repository and controller 
+- /service    - service layer between repository and controller
 - /utils      - error message constants
 
 # Controller Endpoints
-### Courses
-- POST    /api/course/add 
+
+### Course Controller Endpoints
+- POST    /api/course/add
 - DELETE  /api/course/delete/{id}
 - PUT     /api/course/update
 - GET     /api/courses
 - GET     /api/courses/{id}
-### Logs
+- 
+### Log Controller Endpoints
 - GET     /logs
 - GET     /logs/search/{keyword}
-### Students
+- 
+### Student Controller Endpoints
 - POST    /api/student/add
-- POST    /api/student/add/{courseId} 
+- POST    /api/student/add/{courseId}
 - DELETE  /api/student/delete/{id}
 - PUT     /api/student/update
 - GET     /api/students
+- GET     /api/students/{id}
 - GET     /api/students/search/{keyword}
-### Instructors
+- 
+### Instructor Controller Endpoints
 - POST    /api/instructor/add
 - DELETE  /api/instructor/delete/{id}
 - PUT     /api/instructor/update
 - GET     /api/instructors
 - GET     /api/instructors/{id}
+- PUT     /api/instructor/updatesalary/{id}/{salaryRate}
+- GET     /api/instructor/getSalaryLogsBetweenTwoDate/{firstDate}/{lastDate}
+- GET     /api/instructor/getSalaryLogs
+- GET     /api/instructor/getSalaryLogsByInstructorId/{id}
 
 # Rules of Project
 
@@ -70,7 +77,5 @@ password: password
 2. Number of students must be less than 20
 3. Instructor phone number must be unique
 4. Course code is must be unique
-
-
-
+5. 
 

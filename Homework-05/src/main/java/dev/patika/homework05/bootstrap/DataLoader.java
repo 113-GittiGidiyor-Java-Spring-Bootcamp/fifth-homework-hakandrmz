@@ -4,11 +4,10 @@ package dev.patika.homework05.bootstrap;
 
 import dev.patika.homework05.entity.Course;
 import dev.patika.homework05.entity.Instructor;
-import dev.patika.homework05.entity.InstructorType;
+import dev.patika.homework05.entity.enums.InstructorType;
 import dev.patika.homework05.entity.Student;
 import dev.patika.homework05.service.CourseService;
 import dev.patika.homework05.service.InstructorService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.CommandLineRunner;

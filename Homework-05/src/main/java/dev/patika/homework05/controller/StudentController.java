@@ -1,12 +1,16 @@
 package dev.patika.homework05.controller;
 
 import dev.patika.homework05.dto.StudentDTO;
+import dev.patika.homework05.entity.Student;
 import dev.patika.homework05.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -32,10 +36,15 @@ public class StudentController {
         return new ResponseEntity<>("Student with id: " + id + " deleted",HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param studentDTO
+     * @return saved student
+     */
     @PostMapping("student/add")
-    public ResponseEntity<StudentDTO> addNewStudent(@RequestBody StudentDTO studentDTO){
-        studentService.save(studentDTO);
-        return new ResponseEntity("Student Added",HttpStatus.OK);
+    public ResponseEntity<Student> addNewStudent(@RequestBody StudentDTO studentDTO){
+        Student savedStudent = studentService.save(studentDTO);
+        return new ResponseEntity(savedStudent,HttpStatus.OK);
     }
 
     @PutMapping("student/update")

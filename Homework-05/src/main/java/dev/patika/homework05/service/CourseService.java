@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -29,6 +30,11 @@ public class CourseService {
         return (List<Course>) courseRepository.findAll();
     }
 
+    /**
+     *
+     * @param id
+     * @return list of courses saved database
+     */
     public Course findById(long id) {
         return courseRepository.findById(id).orElseThrow(() -> new CourseIsNotExistException(ErrorMessageConstants.COURSE_IS_NOT_EXIST));
     }
@@ -41,19 +47,18 @@ public class CourseService {
      * @return
      */
     @Transactional
-    public String save(CourseDTO courseDTO) {
+    public Optional<Course> save(CourseDTO courseDTO) {
         if(this.isCourseExistOnDatabase(courseDTO.getCourseCode())){
             throw new CourseIsAlreadyExistException(ErrorMessageConstants.COURSE_IS_ALREADY_EXIST);
         }else {
             Course course = new Course();
             courseMapper.updateCourseFromDto(courseDTO,course);
-            courseRepository.save(course);
-            return "Course added to database";
+            return Optional.of(courseRepository.save(course));
         }
     }
 
     /**
-     * this method for saving courses on start
+     * this method for saving courses on bootstrap
      * @param course
      * @return
      */
@@ -61,6 +66,11 @@ public class CourseService {
         return courseRepository.save(course);
     }
 
+    /**
+     *
+     * @param id
+     * delete course by id
+     */
     public void deleteById(long id) {
         try {
             courseRepository.deleteById(id);
@@ -69,6 +79,11 @@ public class CourseService {
         }
     }
 
+    /**
+     *
+     * @param courseDTO
+     * method for update course saved in database
+     */
     @Transactional
     public void update(CourseDTO courseDTO) {
         if(this.isCourseExistOnDatabase(courseDTO.getCourseCode())){
@@ -84,7 +99,7 @@ public class CourseService {
     /**
      * this method for controlling the course code in database
      * @param courseCode
-     * @return
+     * @return if course is exist return true else false
      */
     private boolean isCourseExistOnDatabase(String courseCode) {
         Course course = courseRepository.findCourseByCourseCode(courseCode);

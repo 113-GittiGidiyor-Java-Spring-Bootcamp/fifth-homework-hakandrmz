@@ -1,12 +1,11 @@
 package dev.patika.homework05.dto;
 
 
-import dev.patika.homework05.entity.InstructorType;
+import dev.patika.homework05.entity.enums.InstructorType;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.NonNull;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

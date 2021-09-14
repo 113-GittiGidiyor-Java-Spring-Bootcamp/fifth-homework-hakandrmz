@@ -3,11 +3,15 @@ package dev.patika.homework05.controller;
 import com.sun.xml.bind.v2.TODO;
 
 import dev.patika.homework05.dto.CourseDTO;
+import dev.patika.homework05.entity.Course;
 import dev.patika.homework05.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -17,8 +21,12 @@ public class CourseController {
     private final CourseService courseService;
 
     @GetMapping("/courses")
-    public ResponseEntity<CourseDTO> getAllCourse(){
-        return new ResponseEntity(courseService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Course> getAllCourse(){
+        Optional<List<Course>> resultOptional = Optional.ofNullable(courseService.findAll());
+        if(resultOptional.isPresent()){
+            return new ResponseEntity(resultOptional.get(),HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("courses/{id}")
@@ -33,9 +41,12 @@ public class CourseController {
     }
 
     @PostMapping("course/add")
-    public ResponseEntity<CourseDTO> addNewCourse(@RequestBody CourseDTO courseDTO){
-        courseService.save(courseDTO);
-        return new ResponseEntity("Course added to database",HttpStatus.OK);
+    public ResponseEntity<Course> addNewCourse(@RequestBody CourseDTO courseDTO){
+        Optional<Course> resultOptional = courseService.save(courseDTO);
+        if(resultOptional.isPresent()){
+            return new ResponseEntity<>(resultOptional.get(),HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("course/update")

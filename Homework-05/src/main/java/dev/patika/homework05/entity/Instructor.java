@@ -1,6 +1,7 @@
 package dev.patika.homework05.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.patika.homework05.entity.enums.InstructorType;
 import lombok.*;
 import org.springframework.lang.NonNull;
 

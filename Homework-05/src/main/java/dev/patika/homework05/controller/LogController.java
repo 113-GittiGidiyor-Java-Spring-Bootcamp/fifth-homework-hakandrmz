@@ -2,7 +2,7 @@ package dev.patika.homework05.controller;
 
 
 import dev.patika.homework05.entity.SystemLog;
-import dev.patika.homework05.service.SystemLogService;
+import dev.patika.homework05.service.CustomLogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
-
 @RestController
 @RequiredArgsConstructor
 public class LogController {
 
-    private final SystemLogService systemLogService;
+    private final CustomLogService customLogService;
 
     /**
      *
@@ -24,7 +22,7 @@ public class LogController {
      */
     @GetMapping("/logs")
     public ResponseEntity<SystemLog> getAllLogs(){
-        return new ResponseEntity(systemLogService.getAll(), HttpStatus.OK) ;
+        return new ResponseEntity(customLogService.getAll(), HttpStatus.OK) ;
     }
 
     /**
@@ -34,7 +32,9 @@ public class LogController {
      */
     @GetMapping("/logs/search/{keyword}")
     public ResponseEntity<SystemLog> searchInLogs(@PathVariable String keyword){
-        return new ResponseEntity(systemLogService.search(keyword),HttpStatus.OK);
+        return new ResponseEntity(customLogService.search(keyword),HttpStatus.OK);
     }
+
+
 
 }
